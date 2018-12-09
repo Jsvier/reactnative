@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
-import {StyleSheet, View, ScrollView } from 'react-native';
+import { KeyboardAvoidingView, Platform, StyleSheet, UIManager, ScrollView } from 'react-native'
+import { NavigationActions } from "react-navigation";
+import { Image, View } from 'react-native-animatable'
+import { connect } from "react-redux";
 import PropTypes from 'prop-types';
+
+import { incrementAction, decrementAction } from "../../Actions/actionCreator"
 
 import CardModal from '../../Components/card-modal';
 
-export default class HomeScreen extends Component {
+class HomeContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,6 +21,16 @@ export default class HomeScreen extends Component {
     title: "Menú de aplicaciones de Makro",
     headerTitleStyle :{textAlign: 'center',alignSelf:'center'}
   };
+
+  navigate = () => {
+    const navigateToHome = NavigationActions.navigate({
+      routeName: "screenHome",
+      params: { name: "id" }
+    });
+    this.props.navigation.dispatch(navigateToHome);
+  };
+
+
   render () {
     return (
        <View style={styles.container}>
@@ -46,6 +61,22 @@ export default class HomeScreen extends Component {
     )
   }
 }
+
+
+const mapStateToProps = state => ({
+  counterCount: state.CounterReducer.counter
+});
+
+const mapDispatchToProps = {
+  incrementAction,
+  decrementAction
+};
+
+//Only redux. ever
+const HomeScreen = connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
+
+export default HomeScreen;
+
 
 var styles = StyleSheet.create({
   container: {

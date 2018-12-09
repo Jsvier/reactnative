@@ -20,9 +20,10 @@ class AuthContainer extends Component {
     title: "Login",
     headerTitleStyle :{textAlign: 'center',alignSelf:'center'}
   };
+  
   navigate = () => {
     const navigateToHome = NavigationActions.navigate({
-      routeName: "ScreenOverhead",
+      routeName: "screenHome",
       params: { name: "id" }
     });
     this.props.navigation.dispatch(navigateToHome);
