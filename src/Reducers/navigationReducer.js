@@ -1,7 +1,9 @@
 import AppNavigator from "../Navigation/navigationStack";
 const initialState = AppNavigator.router.getStateForAction(
   AppNavigator.router.getActionForPathAndParams("ScreenAuth"),
-  AppNavigator.router.getActionForPathAndParams("ScreenHome")
+  AppNavigator.router.getActionForPathAndParams("ScreenHome"),
+  AppNavigator.router.getActionForPathAndParams("ScreenOverhead")
+  
 );
 const navigationReducer = (state = initialState, action) => {
   const newState = AppNavigator.router.getStateForAction(action, state);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
-import { View,Text } from 'react-native-animatable'
+import { View } from 'react-native-animatable'
 import PropTypes from 'prop-types';
 
 import CustomButton from '../../Components/CustomButton'

@@ -13,7 +13,7 @@ export default class HomeScreen extends Component {
   }
 
   static navigationOptions = {
-    title: "Menu de aplicaciones de Makro",
+    title: "Menú de aplicaciones de Makro",
     headerTitleStyle :{textAlign: 'center',alignSelf:'center'}
   };
   render () {
@@ -21,21 +21,21 @@ export default class HomeScreen extends Component {
        <View style={styles.container}>
          <ScrollView scrollEnabled={this.state.scroll} style={styles.container}>
                 <CardModal title={'Aereos'}
-                           description={'Sistema de agrupamiento y posicionamientos de articulos, desde rececpcion de mercaderias.'}
+                           description={'Sistema de agrupamiento y posicionamientos de artículos, desde recepción de mercaderías.'}
                            image={require('../../Images/overhead-logo.png')}
                            color='rgba(236,25,40,0.9)'
                            content={'Simple idea de pallet.'}
                            due={1}
                 />
                 <CardModal title={'Verificador de precio'}
-                           description={'Sistema para la busqueda e impresion de articulos activos'}
+                           description={'Sistema para la búsqueda e impresión de artículos activos.'}
                            image={require('../../Images/pricecheck-logo.png')}
                            color='rgba(236,25,40,0.9)'
-                           content={'Simple idea de pricheck.'}
+                           content={'Simple idea de pricecheck.'}
                            due={2}
                 />
                 <CardModal title={'Hipersensible/Sensibles'}
-                           description={'Articulos sensible de rotacion dentro de las tiendas'}
+                           description={'Artículos sensibles de rotación dentro de las tiendas.'}
                            image={require('../../Images/sensitive-logo.png')}
                            color='rgba(236,25,40,0.9)'
                            content={'Simple idea de pricecheck.'}
@@ -52,13 +52,6 @@ var styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#ddd',
       paddingTop: 20
-  },
-  box: {
-      backgroundColor: 'red'
-  },
-  button: {
-      borderColor: 1,
-      borderWidth: 1,
   }
 })
 

@@ -22,7 +22,7 @@ class AuthContainer extends Component {
   };
   navigate = () => {
     const navigateToHome = NavigationActions.navigate({
-      routeName: "screenHome",
+      routeName: "ScreenOverhead",
       params: { name: "id" }
     });
     this.props.navigation.dispatch(navigateToHome);
@@ -57,7 +57,7 @@ class AuthContainer extends Component {
 
   onLoginPress () {
     
-    Alert.alert('You tapped the button!')
+    Alert.alert('BUSCAR!')
   }
   
   render () {
