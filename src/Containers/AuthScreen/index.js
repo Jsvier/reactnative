@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { KeyboardAvoidingView, Platform, StyleSheet, UIManager } from 'react-native'
 import { NavigationActions } from "react-navigation";
-import { Image, View, Text } from 'react-native-animatable'
+import { Image, View } from 'react-native-animatable'
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 
@@ -62,7 +62,7 @@ class AuthContainer extends Component {
   
   render () {
 
-    const { isLoading, login, counterCount, incrementAction, decrementAction } = this.props
+    const { isLoading } = this.props
   
     const { visibleForm } = this.state
     // The following style is responsible of the "bounce-up from bottom" animation of the form
@@ -82,7 +82,7 @@ class AuthContainer extends Component {
         />
          <LoginForm
           ref={(ref) => this.formRef = ref}
-          onLoginPress={this.onLoginPress}
+          onLoginPress={this.navigate}
           isLoading={isLoading}
         />
         <KeyboardAvoidingView
