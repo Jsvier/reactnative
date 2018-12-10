@@ -1,5 +1,5 @@
 //import queryString from 'query-string'
-import config from '../Config'
+//import config from '../Config'
 import pallets from '../Data/pallets.json';
 
 
@@ -31,7 +31,9 @@ export function apiFetch (endpoint, options = {}, query = false) {
    response: selectedBook
  });
   */
-  return pallets;
+ 
+  return '{"response": [{"id": 1},{"id": 2}]}';
+  
 }
 
 export function apiEndpoint(endpoint, qs) {

@@ -1,39 +1,52 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text } from 'react-native'
+import { StyleSheet, Text, Alert } from 'react-native'
 import { View} from 'react-native-animatable'
 import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 
-import { incrementAction, decrementAction } from "../../Actions/actionCreator"
-//import * as actions from './actions';
-
-class OverheadContainer extends Component {
+import * as actions from './actions';
+class OverheadScreen extends Component {
   
+  static propTypes = {
+    overheads: PropTypes.array,
+    overhead: PropTypes.array
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      displaySingleOverhead: false
+    };
+  }
+
   static navigationOptions = {
     title: "Aereos",
     headerTitleStyle :{textAlign: 'center',alignSelf:'center'}
   };
+
+  componentDidMount() {
+    this.props.loadOverheads();
+    Alert.alert( this.props.overheads.toString())
+  }
+
   render () {
+    const {
+      overheads,
+      overhead
+    } = this.props;
     return (
        <View style={styles.container}>
-        <Text>Aereos</Text>
+        <Text>Hello</Text>
        </View>
     )
   }
 }
-
-const mapStateToProps = state => ({
-  counterCount: state.CounterReducer.counter
-});
-
-const mapDispatchToProps = {
-  incrementAction,
-  decrementAction
-};
-
-//Only redux. ever
-const OverheadScreen = connect(mapStateToProps, mapDispatchToProps)(OverheadContainer);
-
-export default OverheadScreen;
+//Reducer overhead se conecta, en la carpeta reducer
+export default connect(state => ({
+  overheads: state.overheads,
+  overhead: state.overhead
+}), actions)(OverheadScreen);
 
 var styles = StyleSheet.create({
   container: {
