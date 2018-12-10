@@ -1,13 +1,5 @@
-/**
-  *Dependencies.
-*/
-import queryString from 'query-string'
-
-/**
-  *Config.
-*/
+//import queryString from 'query-string'
 import config from '../Config'
-// Data
 import pallets from '../Data/pallets.json';
 
 
@@ -39,20 +31,22 @@ export function apiFetch (endpoint, options = {}, query = false) {
    response: selectedBook
  });
   */
-  return null;
+  return pallets;
 }
 
 export function apiEndpoint(endpoint, qs) {
-  let query = '';
+ /* let query = '';
 
   if (qs) {
     query = `?${qs}`;
   }
 
   return `${config.api.url}${endpoint}${query}`;
+  */
 }
 
 export function apiOptions(options = {}) {
+  /*
   const {
     method = 'GET',
     headers = {
@@ -72,4 +66,5 @@ export function apiOptions(options = {}) {
   }
 
   return newOptions;
+  */
 }

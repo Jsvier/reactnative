@@ -5,14 +5,14 @@ import OverheadApi from './api';
 const LIST_OVERHEADS = 'LIST_OVERHEADS';
 const SHOW_SINGLE_OVERHEAD = 'SHOW_SINGLE_OVERHEAD';
 
-export function loadBooks() {
+export function loadOverheads() {
   return {
     type: LIST_OVERHEADS,
     payload: OverheadApi.getAllOverheads()
   };
 }
 
-export function loadSingleBook(query) {
+export function loadSingleOverhead(query) {
   return {
     type: SHOW_SINGLE_OVERHEAD,
     payload: OverheadApi.getSingleOverhead(query)

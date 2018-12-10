@@ -23,7 +23,7 @@ class AuthContainer extends Component {
   
   navigate = () => {
     const navigateToHome = NavigationActions.navigate({
-      routeName: "screenHome",
+      routeName: "ScreenOverhead",
       params: { name: "id" }
     });
     this.props.navigation.dispatch(navigateToHome);

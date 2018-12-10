@@ -1,7 +1,4 @@
-// Constants
-import { API } from '../../constants/api';
-
-// Utils
+import API from '../../Constants/api';
 import { apiFetch } from '../../Lib/api';
 
 class OverheadApi {

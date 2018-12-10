@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 // Actions
 import * as actions from './actions';
 
+
 // Utils
 import { isFirstRender } from '../../lib/utils/frontend';
 
@@ -26,7 +27,6 @@ class Library extends Component {
   }
 
   componentWillMount() {
-    //se obtiene de los parametros de entrada de id, esto es de react, para paralepteos
     const {
       match: {
         params: {
