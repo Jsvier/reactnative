@@ -4,6 +4,8 @@ import { View} from 'react-native-animatable'
 import { connect } from "react-redux";
 
 import { incrementAction, decrementAction } from "../../Actions/actionCreator"
+//import * as actions from './actions';
+
 class OverheadContainer extends Component {
   
   static navigationOptions = {

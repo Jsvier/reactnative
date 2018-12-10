@@ -1,6 +1,6 @@
 export const API = Object.freeze({
   OVERHEAD: {
-    PALLET: 'library/pallet',
-    PALLETS: 'library/pallets'
+    OVERHEAD: 'overhead',
+    OVERHEADS: 'overheads'
   }
 });
