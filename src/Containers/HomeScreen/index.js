@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
-import { KeyboardAvoidingView, Platform, StyleSheet, UIManager, ScrollView } from 'react-native'
+import { StyleSheet, ScrollView } from 'react-native'
 import { NavigationActions } from "react-navigation";
-import { Image, View } from 'react-native-animatable'
+import { View} from 'react-native-animatable'
 import { connect } from "react-redux";
-import PropTypes from 'prop-types';
 
 import { incrementAction, decrementAction } from "../../Actions/actionCreator"
 
 import CardModal from '../../Components/card-modal';
-
 class HomeContainer extends Component {
   constructor(props) {
     super(props);
@@ -23,13 +21,11 @@ class HomeContainer extends Component {
   };
 
   navigate = () => {
-    const navigateToHome = NavigationActions.navigate({
-      routeName: "screenHome",
-      params: { name: "id" }
+    const navigateToOverhead = NavigationActions.navigate({
+      routeName: "screenOverhead"
     });
-    this.props.navigation.dispatch(navigateToHome);
+    this.props.navigation.dispatch(navigateToOverhead);
   };
-
 
   render () {
     return (
@@ -41,6 +37,7 @@ class HomeContainer extends Component {
                            color='rgba(236,25,40,0.9)'
                            content={'Simple idea de pallet.'}
                            due={1}
+                           onClick={() => this.navigate}
                 />
                 <CardModal title={'Verificador de precio'}
                            description={'Sistema para la búsqueda e impresión de artículos activos.'}
@@ -48,6 +45,7 @@ class HomeContainer extends Component {
                            color='rgba(236,25,40,0.9)'
                            content={'Simple idea de pricecheck.'}
                            due={2}
+                           onClick={() => this.navigate}
                 />
                 <CardModal title={'Hipersensible/Sensibles'}
                            description={'Artículos sensibles de rotación dentro de las tiendas.'}
@@ -55,13 +53,13 @@ class HomeContainer extends Component {
                            color='rgba(236,25,40,0.9)'
                            content={'Simple idea de pricecheck.'}
                            due={1}
+                           onClick={() => this.navigate}
                 />
             </ScrollView>
       </View>
     )
   }
 }
-
 
 const mapStateToProps = state => ({
   counterCount: state.CounterReducer.counter
@@ -76,7 +74,6 @@ const mapDispatchToProps = {
 const HomeScreen = connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
 
 export default HomeScreen;
-
 
 var styles = StyleSheet.create({
   container: {

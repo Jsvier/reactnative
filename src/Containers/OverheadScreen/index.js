@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import {StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native'
+import { View} from 'react-native-animatable'
+import { connect } from "react-redux";
 
-export default class OverheadScreen extends Component {
+import { incrementAction, decrementAction } from "../../Actions/actionCreator"
+class OverheadContainer extends Component {
   
   static navigationOptions = {
     title: "Aereos",
@@ -16,6 +19,20 @@ export default class OverheadScreen extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  counterCount: state.CounterReducer.counter
+});
+
+const mapDispatchToProps = {
+  incrementAction,
+  decrementAction
+};
+
+//Only redux. ever
+const OverheadScreen = connect(mapStateToProps, mapDispatchToProps)(OverheadContainer);
+
+export default OverheadScreen;
+
 var styles = StyleSheet.create({
   container: {
       flex: 1,
@@ -23,4 +40,3 @@ var styles = StyleSheet.create({
       paddingTop: 20
   }
 })
-
