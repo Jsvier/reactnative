@@ -15,7 +15,6 @@ import {
 } from 'react-native';
 
 const {width, height} = Dimensions.get('window');
-
 export default class CardModal extends Component {
 
     constructor(props) {
@@ -43,220 +42,15 @@ export default class CardModal extends Component {
 
             TopBorderRadius: 5,
             BottomBorderRadius: 0,
-
-            activate: 'Activate',
-            activated: false,
-
             offset: 0,
-
-
-
             pressed: false,
         };
-
-        this._onPress = this._onPress.bind(this);
-        this.calculateOffset = this.calculateOffset.bind(this);
-        this.activate = this.activate.bind(this);
-
     }
-
-
-    _onPress() {
-        this.props.onClick();
-        this.setState({pressed: !this.state.pressed});
-        this.calculateOffset();
-    }
-
-
-    grow() {
-        this.setState({TopBorderRadius: 0, BottomBorderRadius: 5});
-
-        Animated.parallel([
-            Animated.spring(
-                this.state.top_width,
-                {
-                    toValue: width
-                }
-            ).start(),
-            Animated.spring(
-                this.state.top_height,
-                {
-                    toValue: height/2
-                }
-            ).start(),
-            Animated.spring(
-                this.state.bottom_height,
-                {
-                    toValue: height/6 + 50
-                }
-            ).start(),
-            Animated.spring(
-                this.state.content_height,
-                {
-                    toValue: height/2
-                }
-            ).start(),
-            Animated.spring(
-                this.state.top_pan,
-                {
-                    toValue: {
-                        x: 0,
-                        y: -this.state.offset
-                    }
-                }
-            ).start(),
-            Animated.spring(
-                this.state.content_pan,
-                {
-                    toValue: {
-                        x: 0,
-                        y: -(height/8  + this.state.offset)
-                    }
-                }
-            ).start(),
-            Animated.spring(
-                this.state.bottom_pan,
-                {
-                    toValue: {
-                        x: 0,
-                        y: -(50 + this.state.offset)
-                    }
-                }
-            ).start(),
-
-            Animated.timing(
-                this.state.content_opac,
-                {
-                    toValue: 1
-                }
-            ).start(),
-            Animated.timing(
-                this.state.button_opac,
-                {
-                    toValue: 1
-                }
-            ).start(),
-            Animated.timing(
-                this.state.back_opac,
-                {
-                    toValue: 1
-                }
-            ).start(),
-            Animated.timing(
-                this.state.plus,
-                {
-                    toValue: 0
-                }
-            ).start(),
-
-        ])
-    }
-
-    shrink() {
-
-        this.setState({TopBorderRadius: 5, BottomBorderRadius: 0});
-        Animated.parallel([
-            Animated.spring(
-                this.state.top_width,
-                {
-                    toValue: this.state.org_width
-                }
-            ).start(),
-            Animated.spring(
-                this.state.top_height,
-                {
-                    toValue: this.state.org_height
-                }
-            ).start(),
-            Animated.spring(
-                this.state.bottom_height,
-                {
-                    toValue: height/6
-                }
-            ).start(),
-            Animated.spring(
-                this.state.top_pan,
-                {
-                    toValue: {
-                        x: 0,
-                        y: 0
-                    }
-                }
-            ).start(),
-            Animated.spring(
-                this.state.bottom_pan,
-                {
-                    toValue: {
-                        x: 0,
-                        y: 0
-                    }
-                }
-            ).start(),
-            Animated.spring(
-                this.state.content_height,
-                {
-                    toValue: 0
-                }
-            ).start(),
-            Animated.timing(
-                this.state.content_opac,
-                {
-                    toValue: 0
-                }
-            ).start(),
-            Animated.timing(
-                this.state.button_opac,
-                {
-                    toValue: 0
-                }
-            ).start(),
-            Animated.timing(
-                this.state.back_opac,
-                {
-                    toValue: 0
-                }
-            ).start(),
-            Animated.timing(
-                this.state.plus,
-                {
-                    toValue: 1
-                }
-            ).start(),
-
-        ])
-    }
-
-
-    calculateOffset() {
-        if(this.refs.container) {
-            this.refs.container.measure((fx, fy, width, height, px, py) => {
-                this.setState({offset: py}, () => {
-                    if(this.state.pressed) {
-                        console.log('growing with offset', this.state.offset);
-                        this.grow();
-                    } else {
-                        console.log('shrinking with offset', this.state.offset);
-                        this.shrink();
-                    }
-
-                })
-            });
-        }
-    }
-
-    activate() {
-        this.setState({activate: 'loading'});
-        setTimeout(()=> {
-            this.setState({activate: <Text>Activated</Text>, activated: true})
-        }, 1500)
-
-    }
-
 
     renderTop() {
         var back = this.state.pressed
             ?
-            <TouchableOpacity style={[styles.backButton]} onPress={this._onPress}>
+            <TouchableOpacity style={[styles.backButton]}>
                 <Animated.View style={{opacity: this.state.back_opac}}>
                     <Text style={{color: 'white'}}></Text>
                 </Animated.View>
@@ -272,20 +66,12 @@ export default class CardModal extends Component {
                             height: this.state.top_height,
                             transform: this.state.top_pan.getTranslateTransform()
                         }]}>
-
                 {back}
-
-
             </Animated.Image>
         )
     }
 
     renderBottom() {
-
-        var loading = this.state.activate == 'loading' ?
-            <ActivityIndicator animating={true} color='white'/>
-            :<Text style={{color: 'white', fontWeight: '800', fontSize: 18}}>{this.state.activate}</Text>;
-
         return (
             <Animated.View style={[styles.bottom,
             {
@@ -302,16 +88,12 @@ export default class CardModal extends Component {
                         <Text style={{fontSize: 12, fontWeight: '500', color: 'gray'}}>Ultima dia de visita: {this.props.due} </Text>
                     </View>
                 </View>
-
-
             </Animated.View>
         )
     }
 
     renderContent() {
-        if(!this.state.pressed) {
-            return
-        }
+
         return (
             <Animated.View style={{opacity: this.state.content_opac, marginTop: 40, width: width, height: this.state.content_height, zIndex: -1,
             backgroundColor: '#ddd', transform: this.state.content_pan.getTranslateTransform()}}>
@@ -320,8 +102,6 @@ export default class CardModal extends Component {
                     <Text style={{fontSize: 24, fontWeight: '700', color: 'black'}}>Description</Text>
                     <Text style={{color: 'gray', paddingTop: 10}}>{this.props.content}</Text>
                 </View>
-
-
             </Animated.View>
         )
     }
@@ -330,8 +110,7 @@ export default class CardModal extends Component {
 
         return (
             <View style={[styles.container, this.state.pressedStyle]}>
-                <TouchableWithoutFeedback
-                    onPress={!this.state.pressed ? this._onPress : null}>
+                <TouchableWithoutFeedback>
                     <View ref="container"
                           style={[{alignItems: 'center'}]}>
                         {this.renderTop()}
@@ -339,7 +118,6 @@ export default class CardModal extends Component {
                         {this.renderContent()}
                     </View>
                 </TouchableWithoutFeedback>
-
             </View>
         )
     }
