@@ -97,7 +97,7 @@ class AuthContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  counterCount: state.CounterReducer.counter
+  counterCount: state.Reducer.counter
 });
 
 const mapDispatchToProps = {

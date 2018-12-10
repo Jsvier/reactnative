@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import CounterReducer from "./counterReducer";
+import Reducer from "./Reducer";
 import NavigationReducer from "./navigationReducer";
 
 const AppReducer = combineReducers({
-  CounterReducer,
+  Reducer,
   NavigationReducer
 });
 

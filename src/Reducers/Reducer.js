@@ -1,8 +1,8 @@
 import { incrementCounter, decrementCounter, getAllOverhead, getAllOverheads } from "../Actions/actionTypes";
 
-const initialState = { counter: 0 };
+const initialState = { counter: 0, user: [], pallets: [] };
 
-const counterReducer = (state = initialState, action) => {
+const Reducer = (state = initialState, action) => {
   switch (action.type) {
     case incrementCounter:
       return { ...state, counter: state.counter + 1 };
@@ -10,7 +10,7 @@ const counterReducer = (state = initialState, action) => {
     case getAllOverhead:
       return { ...state, counter: state.counter - 1 };
     
-    case incrementCounter:
+    case decrementCounter:
       return { ...state, counter: state.counter + 1 };
 
     case getAllOverheads:
@@ -21,4 +21,4 @@ const counterReducer = (state = initialState, action) => {
   }
 };
 
-export default counterReducer;
+export default Reducer;

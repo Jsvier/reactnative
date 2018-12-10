@@ -4,7 +4,6 @@ import { View} from 'react-native-animatable'
 import { connect } from "react-redux";
 
 import { getAllOverheadsAction, getAllOverheadAction } from "../../Actions/actionCreator"
-
 class OverheadContainer extends Component {
     
   constructor(props) {
@@ -21,10 +20,6 @@ class OverheadContainer extends Component {
   }
 
   render () {
-    const {
-      overheads,
-      overhead
-    } = this.props;
     return (
        <View style={styles.container}>
         <Text>Hello</Text>
@@ -35,7 +30,7 @@ class OverheadContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  counterCount: state.CounterReducer.counter
+  counterCount: state.Reducer.counter
 });
 
 const mapDispatchToProps = {
