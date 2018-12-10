@@ -1,4 +1,4 @@
-import { incrementCounter, decrementCounter } from "./actionTypes";
+import { incrementCounter, decrementCounter, getAllOverhead, getAllOverheads } from "./actionTypes";
 
 const incrementAction = () => ({
   type: incrementCounter
@@ -8,4 +8,12 @@ const decrementAction = () => ({
   type: decrementCounter
 });
 
-export { incrementAction, decrementAction };
+const getAllOverheadsAction = () => ({
+  type: getAllOverheads
+});
+
+const getAllOverheadAction = () => ({
+  type: getAllOverhead
+});
+
+export { incrementAction, decrementAction, getAllOverheadsAction, getAllOverheadAction };

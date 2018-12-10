@@ -1,4 +1,4 @@
-import { incrementCounter, decrementCounter } from "../Actions/actionTypes";
+import { incrementCounter, decrementCounter, getAllOverhead, getAllOverheads } from "../Actions/actionTypes";
 
 const initialState = { counter: 0 };
 
@@ -7,7 +7,13 @@ const counterReducer = (state = initialState, action) => {
     case incrementCounter:
       return { ...state, counter: state.counter + 1 };
 
-    case decrementCounter:
+    case getAllOverhead:
+      return { ...state, counter: state.counter - 1 };
+    
+    case incrementCounter:
+      return { ...state, counter: state.counter + 1 };
+
+    case getAllOverheads:
       return { ...state, counter: state.counter - 1 };
 
     default:

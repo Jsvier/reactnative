@@ -1,23 +1,14 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, Alert } from 'react-native'
+import { StyleSheet, Text } from 'react-native'
 import { View} from 'react-native-animatable'
 import { connect } from "react-redux";
-import PropTypes from 'prop-types';
 
-import * as actions from './actions';
-class OverheadScreen extends Component {
-  
-  static propTypes = {
-    overheads: PropTypes.array,
-    overhead: PropTypes.array
-  };
+import { getAllOverheadsAction, getAllOverheadAction } from "../../Actions/actionCreator"
 
+class OverheadContainer extends Component {
+    
   constructor(props) {
     super(props);
-
-    this.state = {
-      displaySingleOverhead: false
-    };
   }
 
   static navigationOptions = {
@@ -26,8 +17,7 @@ class OverheadScreen extends Component {
   };
 
   componentDidMount() {
-    this.props.loadOverheads();
-    Alert.alert( this.props.overheads.toString())
+    console.log( this.props);
   }
 
   render () {
@@ -38,15 +28,26 @@ class OverheadScreen extends Component {
     return (
        <View style={styles.container}>
         <Text>Hello</Text>
+
        </View>
     )
   }
 }
-//Reducer overhead se conecta, en la carpeta reducer
-export default connect(state => ({
-  overheads: state.overheads,
-  overhead: state.overhead
-}), actions)(OverheadScreen);
+
+const mapStateToProps = state => ({
+  counterCount: state.CounterReducer.counter
+});
+
+const mapDispatchToProps = {
+  getAllOverheadsAction,
+  getAllOverheadAction
+};
+
+//Only redux. ever
+const OverheadScreen = connect(mapStateToProps, mapDispatchToProps)(OverheadContainer);
+
+export default OverheadScreen;
+
 
 var styles = StyleSheet.create({
   container: {
