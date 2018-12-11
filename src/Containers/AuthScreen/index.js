@@ -3,19 +3,15 @@ import { KeyboardAvoidingView, Platform, StyleSheet, UIManager, Alert } from 're
 import { NavigationActions } from "react-navigation";
 import { Image, View } from 'react-native-animatable'
 import { connect } from "react-redux";
-
 import imgLogo from '../../Images/logo.png'
 import metrics from '../../Config/metrics'
 import LoginForm from './LoginForm'
-
-//import { login } from '../../Reducers/Actions';
-
+import { login } from '../../Reducers/Actions';
 
 const IMAGE_WIDTH = metrics.DEVICE_WIDTH * 0.8
 
 if (Platform.OS === 'android') UIManager.setLayoutAnimationEnabledExperimental(true)
-
-export default class AuthScreen extends Component {
+class AuthScreen extends Component {
    
   constructor(props){
     super(props);
@@ -26,7 +22,7 @@ export default class AuthScreen extends Component {
     }
 }
   static navigationOptions = {
-    title: "Login",
+    title: "Ingreso del usuario",
     headerTitleStyle :{textAlign: 'center',alignSelf:'center'}
   };
   
@@ -35,9 +31,16 @@ export default class AuthScreen extends Component {
       routeName: "screenHome"
     });
 
-    Alert.alert('hola pepe!');
+    this.setState({ loader : true })
+    this.setState({ user: this.formRef.state.user});
+    this.setState({ password: this.formRef.state.password});
 
-    this.props.navigation.dispatch(navigateToHome);
+		this.props.login(this.state).then(($result) => {
+      this.props.navigation.dispatch(navigateToHome);
+		}).catch( (err) => {
+			this.setState({ loader : false })
+      Alert.alert('Error',err.message);		
+		})
   };
 
   componentWillUpdate (nextProps) {
@@ -53,7 +56,6 @@ export default class AuthScreen extends Component {
   }
 
   render () {
-    
     const formStyle = { height: 0 }
     return (
       <View style={styles.container}>
@@ -79,13 +81,13 @@ export default class AuthScreen extends Component {
   }
 }
 
-//function MapStateToProps(state){
-//	return {
-//		user : state.session && state.session.user ? state.session.user : false
-//	}
-//}
+function MapStateToProps(state){
+	return {
+		user : state.session && state.session.user ? state.session.user : false
+  }
+}
 
-//export default connect(MapStateToProps,{  login })(AuthScreen);
+export default connect(MapStateToProps,{  login })(AuthScreen);
 
 const styles = StyleSheet.create({
   container: {

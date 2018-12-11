@@ -2,11 +2,9 @@ import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
 import { View } from 'react-native-animatable'
 import PropTypes from 'prop-types';
-
 import CustomButton from '../../Components/CustomButton'
 import CustomTextInput from '../../Components/CustomTextInput'
 import metrics from '../../Config/metrics'
-
 export default class LoginForm extends Component {
   static propTypes = {
     isLoading: PropTypes.bool,
