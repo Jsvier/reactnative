@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { KeyboardAvoidingView, Platform, StyleSheet, UIManager } from 'react-native'
+import { KeyboardAvoidingView, Platform, StyleSheet, UIManager, Alert } from 'react-native'
 import { NavigationActions } from "react-navigation";
 import { Image, View } from 'react-native-animatable'
 import { connect } from "react-redux";
-import PropTypes from 'prop-types';
 
 import imgLogo from '../../Images/logo.png'
 import metrics from '../../Config/metrics'
@@ -16,6 +15,15 @@ const IMAGE_WIDTH = metrics.DEVICE_WIDTH * 0.8
 if (Platform.OS === 'android') UIManager.setLayoutAnimationEnabledExperimental(true)
 
 class AuthContainer extends Component {
+   
+  constructor(props){
+    super(props);
+    this.state = {
+        user      : '',
+        password  : '',
+        loader    : false
+    }
+}
   static navigationOptions = {
     title: "Login",
     headerTitleStyle :{textAlign: 'center',alignSelf:'center'}
@@ -23,60 +31,35 @@ class AuthContainer extends Component {
   
   navigate = () => {
     const navigateToHome = NavigationActions.navigate({
-      routeName: "screenOverhead",
-      params: { name: "id" }
+      routeName: "screenHome"
     });
+
+    Alert.alert('hola pepe!');
+
     this.props.navigation.dispatch(navigateToHome);
   };
 
-  static propTypes = {
-    isLoggedIn: PropTypes.bool,
-    isLoading: PropTypes.bool,
-    login: PropTypes.func,
-    onLoginAnimationCompleted: PropTypes.func // Called at the end of a successfully login animation
-  }
-
-  state = {
-    visibleForm: null // Can be: null | LOGIN
-  }
-
   componentWillUpdate (nextProps) {
-    // If the user has logged up succesfully start the hide animation
     if (!this.props.isLoggedIn && nextProps.isLoggedIn) {
       this.hideAuthScreen()
     }
   }
 
   hideAuthScreen = async () => {
-    // 1. Slide out the form container
-    await this._setVisibleForm(null)
-    // 2. Fade out the logo
-    await this.logoImgRef.fadeOut(800)
-    // 3. Tell the container (app.js) that the animation has completed
-    this.props.onLoginAnimationCompleted()
+    await this._setVisibleForm(null);
+    await this.logoImgRef.fadeOut(200);
+    this.props.onLoginAnimationCompleted();
   }
 
-  onLoginPress () {
-    
-    Alert.alert('BUSCAR!')
-  }
-  
   render () {
-
-    const { isLoading } = this.props
-  
-    const { visibleForm } = this.state
-    // The following style is responsible of the "bounce-up from bottom" animation of the form
-    // <Text>{counterCount}</Text>
-    //   onPress={() => incrementAction()}
-  
-    const formStyle = (!visibleForm) ? { height: 0 } : { marginTop: 40 }
+    
+    const formStyle = { height: 0 }
     return (
       <View style={styles.container}>
         <Image
           animation={'bounceIn'}
-          duration={1200}
-          delay={200}
+          duration={60}
+          delay={10}
           ref={(ref) => this.logoImgRef = ref}
           style={styles.logoImg}
           source={imgLogo}
@@ -84,7 +67,6 @@ class AuthContainer extends Component {
          <LoginForm
           ref={(ref) => this.formRef = ref}
           onLoginPress={this.navigate}
-          isLoading={isLoading}
         />
         <KeyboardAvoidingView
           keyboardVerticalOffset={0}
