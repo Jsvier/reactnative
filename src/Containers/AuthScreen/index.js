@@ -8,13 +8,14 @@ import imgLogo from '../../Images/logo.png'
 import metrics from '../../Config/metrics'
 import LoginForm from './LoginForm'
 
-import { login } from '../../Reducers/Actions';
+//import { login } from '../../Reducers/Actions';
+
 
 const IMAGE_WIDTH = metrics.DEVICE_WIDTH * 0.8
 
 if (Platform.OS === 'android') UIManager.setLayoutAnimationEnabledExperimental(true)
 
-class AuthScreen extends Component {
+export default class AuthScreen extends Component {
    
   constructor(props){
     super(props);
@@ -78,13 +79,13 @@ class AuthScreen extends Component {
   }
 }
 
-function MapStateToProps(state){
-	return {
-		user : state.session && state.session.user ? state.session.user : false
-	}
-}
+//function MapStateToProps(state){
+//	return {
+//		user : state.session && state.session.user ? state.session.user : false
+//	}
+//}
 
-export default connect(MapStateToProps,{  login })(AuthScreen);
+//export default connect(MapStateToProps,{  login })(AuthScreen);
 
 const styles = StyleSheet.create({
   container: {

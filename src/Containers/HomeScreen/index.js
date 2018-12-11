@@ -3,8 +3,7 @@ import { StyleSheet, ScrollView } from 'react-native'
 import { NavigationActions } from "react-navigation";
 import { View} from 'react-native-animatable'
 import { connect } from "react-redux";
-
-
+import { login } from '../../Reducers/Actions';
 import CardModal from '../../Components/card-modal';
 class HomeScreen extends Component {
   constructor(props) {
@@ -59,6 +58,14 @@ class HomeScreen extends Component {
     )
   }
 }
+
+function MapStateToProps(state){
+	return {
+		user : state.session && state.session.user ? state.session.user : false
+	}
+}
+
+export default connect(MapStateToProps,{  login })(HomeScreen);
 
 var styles = StyleSheet.create({
   container: {

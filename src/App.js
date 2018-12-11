@@ -10,8 +10,8 @@ import reducers from './Reducers'
 import React, {Component} from 'react';
 import thunk from 'redux-thunk';
  
-//import store from './Lib/store'
-import AppNavigation from './Containers/AuthScreen'
+//import store from './Lib/store' TODO:ARMAR
+import Navigation from './Navigation/navigationStack'
 
 const loggerMiddleware = createLogger({ predicate: () => false })
 const persistedReducer = persistReducer({ key: 'root', storage, blacklist: ['filter', 'modals'] }, reducers)
@@ -27,14 +27,12 @@ const initialState = {}
 export const store = configureStore(initialState)
 export const persistor = persistStore(store)
 
-
-
 export default class App extends Component {
   render() {
     return ( 
       <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-              <AppNavigation />
+              <Navigation />
           </PersistGate>
       </Provider>
     );

@@ -3,7 +3,7 @@ import ScreenHome from "../Containers/HomeScreen";
 import ScreenAuth from "../Containers/AuthScreen";
 import ScreenOverhead from "../Containers/OverheadScreen";
 
-const navigator = StackNavigator({
+const Navigation = StackNavigator({
   ScreenAuth: {
     screen: ScreenAuth
   },
@@ -15,4 +15,4 @@ const navigator = StackNavigator({
   }
 });
 
-export default navigator;
+export default Navigation;

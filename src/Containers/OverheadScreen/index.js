@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, Text } from 'react-native'
 import { View} from 'react-native-animatable'
 import { connect } from "react-redux";
-
+import { login } from '../../Reducers/Actions';
 class OverheadScreen extends Component {
     
   constructor(props) {
@@ -27,6 +27,15 @@ class OverheadScreen extends Component {
     )
   }
 }
+
+
+function MapStateToProps(state){
+	return {
+		user : state.session && state.session.user ? state.session.user : false
+	}
+}
+
+export default connect(MapStateToProps,{  login })(OverheadScreen);
 
 var styles = StyleSheet.create({
   container: {
