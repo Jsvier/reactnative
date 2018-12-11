@@ -4,10 +4,9 @@ import { NavigationActions } from "react-navigation";
 import { View} from 'react-native-animatable'
 import { connect } from "react-redux";
 
-import { incrementAction, decrementAction } from "../../Actions/actionCreator"
 
 import CardModal from '../../Components/card-modal';
-class HomeContainer extends Component {
+class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -60,20 +59,6 @@ class HomeContainer extends Component {
     )
   }
 }
-
-const mapStateToProps = state => ({
-  counterCount: state.Reducer.counter
-});
-
-const mapDispatchToProps = {
-  incrementAction,
-  decrementAction
-};
-
-//Only redux. ever
-const HomeScreen = connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
-
-export default HomeScreen;
 
 var styles = StyleSheet.create({
   container: {

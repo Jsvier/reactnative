@@ -8,13 +8,13 @@ import imgLogo from '../../Images/logo.png'
 import metrics from '../../Config/metrics'
 import LoginForm from './LoginForm'
 
-import { incrementAction, decrementAction } from "../../Actions/actionCreator"
+import { login } from '../../Reducers/Actions';
 
 const IMAGE_WIDTH = metrics.DEVICE_WIDTH * 0.8
 
 if (Platform.OS === 'android') UIManager.setLayoutAnimationEnabledExperimental(true)
 
-class AuthContainer extends Component {
+class AuthScreen extends Component {
    
   constructor(props){
     super(props);
@@ -78,19 +78,13 @@ class AuthContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  counterCount: state.Reducer.counter
-});
+function MapStateToProps(state){
+	return {
+		user : state.session && state.session.user ? state.session.user : false
+	}
+}
 
-const mapDispatchToProps = {
-  incrementAction,
-  decrementAction
-};
-
-//Only redux. ever
-const AuthScreen = connect(mapStateToProps, mapDispatchToProps)(AuthContainer);
-
-export default AuthScreen;
+export default connect(MapStateToProps,{  login })(AuthScreen);
 
 const styles = StyleSheet.create({
   container: {

@@ -3,8 +3,7 @@ import { StyleSheet, Text } from 'react-native'
 import { View} from 'react-native-animatable'
 import { connect } from "react-redux";
 
-import { getAllOverheadsAction, getAllOverheadAction } from "../../Actions/actionCreator"
-class OverheadContainer extends Component {
+class OverheadScreen extends Component {
     
   constructor(props) {
     super(props);
@@ -16,7 +15,7 @@ class OverheadContainer extends Component {
   };
 
   componentDidMount() {
-    console.log( this.props);
+//    console.log( this.props);
   }
 
   render () {
@@ -28,21 +27,6 @@ class OverheadContainer extends Component {
     )
   }
 }
-
-const mapStateToProps = state => ({
-  counterCount: state.Reducer.counter
-});
-
-const mapDispatchToProps = {
-  getAllOverheadsAction,
-  getAllOverheadAction
-};
-
-//Only redux. ever
-const OverheadScreen = connect(mapStateToProps, mapDispatchToProps)(OverheadContainer);
-
-export default OverheadScreen;
-
 
 var styles = StyleSheet.create({
   container: {

@@ -1,50 +1,43 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
 
-import React, {
-  Component
-} from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-import {
-  Provider
-} from 'react-redux'
-import store from './Lib/store'
-import AppNavigation from './Navigation'
+/*redux configuration*/
+import { applyMiddleware, compose, createStore } from 'redux'
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+import { PersistGate } from 'redux-persist/integration/react'
+import { Provider } from 'react-redux'
+import { createLogger } from 'redux-logger'
+import reducers from './Reducers'
+import React, {Component} from 'react';
+import thunk from 'redux-thunk';
+ 
+//import store from './Lib/store'
+import AppNavigation from './Containers/AuthScreen'
+
+const loggerMiddleware = createLogger({ predicate: () => false })
+const persistedReducer = persistReducer({ key: 'root', storage, blacklist: ['filter', 'modals'] }, reducers)
+ 
+function configureStore (initialState) {
+  const enhancer = compose(
+    applyMiddleware(thunk, loggerMiddleware)
+  )
+  return createStore(persistedReducer, initialState, enhancer)
+}
+ 
+const initialState = {}
+export const store = configureStore(initialState)
+export const persistor = persistStore(store)
+
 
 
 export default class App extends Component {
   render() {
     return ( 
-    <Provider store = {store} >
-      <AppNavigation / >
-    </Provider>
+      <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+              <AppNavigation />
+          </PersistGate>
+      </Provider>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
