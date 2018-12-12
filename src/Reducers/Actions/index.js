@@ -9,15 +9,14 @@ import {
 export const login = ({ email, password }) => (dispatch, getState) => {
 	return new Promise((resolve, reject) => {
 		axios.post(API_LOGIN,{
-				email,
-				password
+                "email": "jetchepare@makro.com.ar",
+                "password": "0123456aS@"
 			})
 			.then((respJson) => {
-				//si todo sale bien guardamos el user y token en localstore
 				dispatch({
 					type: SET_SESSION,
-					user: respJson.data.user,
-					token: respJson.data.token
+					user: respJson.dattoken_type,
+					token: respJson.data.access_token
 				})
 				return resolve(respJson.data)
 			})
