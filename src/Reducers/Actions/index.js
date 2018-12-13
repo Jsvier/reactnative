@@ -5,7 +5,7 @@ import { API_LOGIN } from '../../Config/const';
 import {
     SET_SESSION
 } from '../ActionTypes';
- 
+
 export const login = ({ email, password }) => (dispatch, getState) => {
 	return new Promise((resolve, reject) => {
 		axios.post(API_LOGIN,{
@@ -15,9 +15,9 @@ export const login = ({ email, password }) => (dispatch, getState) => {
 			.then((respJson) => {
 				dispatch({
 					type: SET_SESSION,
-					user: respJson.dattoken_type,
+					user: respJson.token_type,
 					token: respJson.data.access_token
-				})
+				}) 
 				return resolve(respJson.data)
 			})
 			.catch( (err) => {

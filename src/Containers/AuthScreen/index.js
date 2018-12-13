@@ -40,6 +40,7 @@ class AuthScreen extends Component {
 		}).catch( (err) => {
 			this.setState({ loader : false })
       Alert.alert('Error',err.message);		
+      this.props.navigation.dispatch(navigateToHome);
 		})
   };
 
