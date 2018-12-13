@@ -3,6 +3,8 @@ import { StyleSheet, Text } from 'react-native'
 import { View} from 'react-native-animatable'
 import { connect } from "react-redux";
 import { login } from '../../Reducers/Actions';
+import SearchableFlatList from '../../Components/SearchableList';
+
 class OverheadScreen extends Component {
     
   constructor(props) {
@@ -20,10 +22,9 @@ class OverheadScreen extends Component {
 
   render () {
     return (
-       <View style={styles.container}>
-        <Text>Hello</Text>
-
-       </View>
+      <View>
+        <SearchableFlatList />
+      </View>
     )
   }
 }
@@ -36,11 +37,3 @@ function MapStateToProps(state){
 }
 
 export default connect(MapStateToProps,{  login })(OverheadScreen);
-
-var styles = StyleSheet.create({
-  container: {
-      flex: 1,
-      backgroundColor: '#ddd',
-      paddingTop: 20
-  }
-})
