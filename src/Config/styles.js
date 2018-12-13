@@ -13,6 +13,11 @@ export const styles = StyleSheet.create({
     paddingTop: 24,
     backgroundColor: 'white'
   },
+  containerHome: {
+    flex: 1,
+    backgroundColor: '#ddd',
+    paddingTop: 20
+  },
   logoImg: {
     flex: 1,
     height: null,

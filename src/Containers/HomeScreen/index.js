@@ -18,11 +18,12 @@ class HomeScreen extends Component {
     headerTitleStyle :{textAlign: 'center',alignSelf:'center'}
   };
 
-  navigate = () => {
-    const navigateToOverhead = NavigationActions.navigate({
-      routeName: "screenOverhead"
+  navigate = (route) => {
+    const navigateTo= NavigationActions.navigate({
+      routeName: route
     });
-    this.props.navigation.dispatch(navigateToOverhead);
+    
+    this.props.navigation.dispatch(navigateTo);
   };
 
   render () {
@@ -35,7 +36,7 @@ class HomeScreen extends Component {
                            color='rgba(236,25,40,0.9)'
                            content={'Simple idea de pallet.'}
                            due={1}
-                           onClick={() => this.navigate}
+                           onPress={() => this.navigate ("screenOverhead")}
                 />
                 <CardModal title={'Verificador de precio'}
                            description={'Sistema para la búsqueda e impresión de artículos activos.'}
@@ -43,7 +44,7 @@ class HomeScreen extends Component {
                            color='rgba(236,25,40,0.9)'
                            content={'Simple idea de pricecheck.'}
                            due={2}
-                           onClick={() => this.navigate}
+                           onPress={() => this.navigate  ("screenHome")}
                 />
                 <CardModal title={'Hipersensible/Sensibles'}
                            description={'Artículos sensibles de rotación dentro de las tiendas.'}
@@ -51,7 +52,7 @@ class HomeScreen extends Component {
                            color='rgba(236,25,40,0.9)'
                            content={'Simple idea de pricecheck.'}
                            due={1}
-                           onClick={() => this.navigate}
+                           onPress={() => this.navigate  ("screenHome")}
                 />
             </ScrollView>
       </View>
