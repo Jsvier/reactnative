@@ -12,8 +12,15 @@ class OverheadScreen extends Component {
   }
 
   static navigationOptions = {
-    title: "Aereos",
-    headerTitleStyle :{textAlign: 'center',alignSelf:'center'}
+    title: "Sistema de aereos de makro",
+    headerStyle: {
+      backgroundColor: 'rgba(236,25,40,0.9)',
+    },
+    headerLayoutPreset: 'center',
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
   };
 
   componentDidMount() {
@@ -28,7 +35,6 @@ class OverheadScreen extends Component {
     )
   }
 }
-
 
 function MapStateToProps(state){
 	return {

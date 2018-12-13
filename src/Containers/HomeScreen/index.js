@@ -15,9 +15,16 @@ class HomeScreen extends Component {
 
   static navigationOptions = {
     title: "Menú de aplicaciones de Makro",
-    headerTitleStyle :{textAlign: 'center',alignSelf:'center'}
+    headerStyle: {
+      backgroundColor: 'rgba(236,25,40,0.9)',
+    },
+    headerLayoutPreset: 'center',
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
   };
-
+   
   navigate = (route) => {
     const navigateTo= NavigationActions.navigate({
       routeName: route

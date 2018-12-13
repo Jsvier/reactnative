@@ -1,11 +1,10 @@
 
-
 import metrics from '../../Config/metrics'
 
 const IMAGE_WIDTH = metrics.DEVICE_WIDTH * 0.8
 
 export const styles = StyleSheet.create({
-  container: {
+  containerAuth: {
     flex: 1,
     flexDirection: 'column',
     width: metrics.DEVICE_WIDTH,
@@ -25,8 +24,5 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     resizeMode: 'contain',
     marginVertical: 30
-  },
-  bottom: {
-    backgroundColor: 'white'
   }
 })

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { KeyboardAvoidingView, Platform, StyleSheet, UIManager, Alert } from 'react-native'
+import { KeyboardAvoidingView, Platform, StyleSheet, UIManager, Alert, Keyboard } from 'react-native'
 import { NavigationActions } from "react-navigation";
 import { Image, View } from 'react-native-animatable'
 import { connect } from "react-redux";
@@ -16,14 +16,21 @@ class AuthScreen extends Component {
   constructor(props){
     super(props);
     this.state = {
-        user      : '',
+        email      : '',
         password  : '',
         loader    : false
     }
 }
   static navigationOptions = {
-    title: "Ingreso del usuario",
-    headerTitleStyle :{textAlign: 'center',alignSelf:'center'}
+    title: "Ingreso del usuario de makro",
+    headerStyle: {
+      backgroundColor: 'rgba(236,25,40,0.9)',
+    },
+    headerLayoutPreset: 'center',
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
   };
   
   navigate = () => {
@@ -31,8 +38,10 @@ class AuthScreen extends Component {
       routeName: "screenHome"
     });
 
+    Keyboard.dismiss();
+    
     this.setState({ loader : true })
-    this.setState({ user: this.formRef.state.user});
+    this.setState({ email: this.formRef.state.email});
     this.setState({ password: this.formRef.state.password});
 
 		this.props.login(this.state).then(($result) => {

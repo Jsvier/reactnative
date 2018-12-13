@@ -15,7 +15,6 @@ const CardModal = ({ onPress, isEnabled, image, title, text, description, due, c
 const onCardModelPress = isEnabled ? onPress : () => null;
 
 const top_width= new Animated.Value(width - 32);
-const top_height= new Animated.Value(height / 5);
 const bottom_width= new Animated.Value(width - 32);
 const bottom_height= new Animated.Value(height / 6);
 const top_pan= new Animated.ValueXY();

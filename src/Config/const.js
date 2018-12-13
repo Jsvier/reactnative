@@ -1,3 +1,2 @@
-export const API 	   = 'http://api.herelodin.com/v1.0/';
-export const API_LOGIN = `${API}account/login`;
-export const REDCOLOR = '#E40046'
+export const API 	   = 'http://10.49.39.140/api/';
+export const API_LOGIN = `${API}auth/login`;
