@@ -12,7 +12,15 @@ const Navigation = StackNavigator({
   },
   screenOverhead: {
     screen: ScreenOverhead
-  }
-});
+  },}, {
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: 'rgba(236,25,40,0.9)',
+      },
+      headerTitleStyle: {alignSelf: 'center'},
+      headerLayoutPreset: 'center',
+      headerTintColor: '#fff',
+    }
+  });
 
 export default Navigation;

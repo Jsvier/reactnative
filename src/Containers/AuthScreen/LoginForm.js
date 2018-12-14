@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
 import { View } from 'react-native-animatable'
 import PropTypes from 'prop-types';
 import CustomButton from '../../Components/CustomButton'
 import CustomTextInput from '../../Components/CustomTextInput'
-import metrics from '../../Config/metrics'
+import {logincontainer, loginform, loginfooter}  from '../../Config/styles'
+
 export default class LoginForm extends Component {
   static propTypes = {
     isLoading: PropTypes.bool,
@@ -30,8 +30,8 @@ export default class LoginForm extends Component {
     const { isLoading, onLoginPress } = this.props
     const isValid = email !== '' && password !== ''
     return (
-      <View style={styles.container}>
-        <View style={styles.form} ref={(ref) => { this.formRef = ref }}>
+      <View style={logincontainer}>
+        <View style={loginform} ref={(ref) => { this.formRef = ref }}>
         <CustomTextInput
             name={'email'}
             ref={(ref) => this.userInputRef = ref}
@@ -56,7 +56,7 @@ export default class LoginForm extends Component {
             isEnabled={!isLoading}
           />
         </View>
-        <View style={styles.footer}>
+        <View style={loginfooter}>
           <View ref={(ref) => this.buttonRef = ref} animation={'bounceIn'} duration={600} delay={400}>
             <CustomButton
               onPress={() => onLoginPress(email, password)}
@@ -70,16 +70,3 @@ export default class LoginForm extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: metrics.DEVICE_WIDTH * 0.1
-  },
-  form: {
-    marginTop: 20
-  },
-  footer: {
-    height: 100,
-    justifyContent: 'center'
-  }
-})

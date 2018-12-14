@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text } from 'react-native'
 import { View} from 'react-native-animatable'
 import { connect } from "react-redux";
 import { login } from '../../Reducers/Actions';
@@ -12,15 +11,7 @@ class OverheadScreen extends Component {
   }
 
   static navigationOptions = {
-    title: "Sistema de aereos de makro",
-    headerStyle: {
-      backgroundColor: 'rgba(236,25,40,0.9)',
-    },
-    headerLayoutPreset: 'center',
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
+    title: "Sistema de aereos de makro"
   };
 
   componentDidMount() {

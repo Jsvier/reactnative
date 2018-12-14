@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { StyleSheet, ScrollView } from 'react-native'
+import { ScrollView } from 'react-native'
 import { NavigationActions } from "react-navigation";
 import { View} from 'react-native-animatable'
 import { connect } from "react-redux";
 import { login } from '../../Reducers/Actions';
 import CardModal from '../../Components/card-modal';
+import {homecontainer}  from '../../Config/styles'
+
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
@@ -14,15 +16,7 @@ class HomeScreen extends Component {
   }
 
   static navigationOptions = {
-    title: "Menú de aplicaciones de Makro",
-    headerStyle: {
-      backgroundColor: 'rgba(236,25,40,0.9)',
-    },
-    headerLayoutPreset: 'center',
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
+    title: "Menú de aplicaciones de Makro"
   };
    
   navigate = (route) => {
@@ -35,8 +29,8 @@ class HomeScreen extends Component {
 
   render () {
     return (
-       <View style={styles.container}>
-         <ScrollView scrollEnabled={this.state.scroll} style={styles.container}>
+       <View style={homecontainer}>
+         <ScrollView scrollEnabled={this.state.scroll} style={homecontainer}>
                 <CardModal title={'Aereos'}
                            description={'Sistema de agrupamiento y posicionamientos de artículos, desde recepción de mercaderías.'}
                            image={require('../../Images/overhead-logo.png')}
@@ -74,12 +68,3 @@ function MapStateToProps(state){
 }
 
 export default connect(MapStateToProps,{  login })(HomeScreen);
-
-var styles = StyleSheet.create({
-  container: {
-      flex: 1,
-      backgroundColor: '#ddd',
-      paddingTop: 20
-  }
-})
-
