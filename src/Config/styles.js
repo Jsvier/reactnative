@@ -1,5 +1,5 @@
-
-import metrics from '../../Config/metrics'
+import { StyleSheet } from 'react-native'
+import metrics from './metrics'
 
 const IMAGE_WIDTH = metrics.DEVICE_WIDTH * 0.8
 
@@ -24,5 +24,23 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     resizeMode: 'contain',
     marginVertical: 30
-  }
+  },
+  bottom: {
+    backgroundColor: 'white'
+  },
+    containerLogin: {
+      paddingHorizontal: metrics.DEVICE_WIDTH * 0.1
+    },
+    formLogin: {
+      marginTop: 20
+    },
+    footerLogin: {
+      height: 100,
+      justifyContent: 'center'
+    }
+
+
+
+
+    
 })

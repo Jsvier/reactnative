@@ -9,8 +9,8 @@ import {
 export const login = ({ email, password }) => (dispatch, getState) => {
 	return new Promise((resolve, reject) => {
 		axios.post(API_LOGIN,{
-                "email": "jetchepare@makro.com.ar",
-                "password": "0123456aS@"
+                "email": email,
+                "password": password
 			})
 			.then((respJson) => {
 				dispatch({
